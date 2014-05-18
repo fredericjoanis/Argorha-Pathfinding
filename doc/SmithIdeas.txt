@@ -1,0 +1,45 @@
+Question) How can I determine the control points to make a good looking path as you've done in the article. You talk about when a control point is outside a sector, but not about how to determine the location of this control point. I give a 25% out of the curve, and I throw the control points one side of the curve first, then the other side of the real points so it keep the curve smooth, but on a long sector, it would give a curve instead of a needed straight line.
+
+Answer) Ah yes, I believe I used a Cardinal spline with a tightness factor of about ‘0.3’ to generate the unmodified path. This of course would go outside the sectors, so I converted the Cardinal spline to a Hermite spline which is then relatively easy to convert to a Bezier curve. To find the control points of the Bezier curve from the Hermite spline you do the following (in pseudo code):
+
+int ctrl_pt_count = hermite_spline->Get_Point_Count ();
+for (int index = 0; index < ctrl_pt_count -1; index ++)
+{
+Get the current and next points on the hermite spline
+Vector3 point = hermite_spline->Get_Point (index);
+Vector3 next_point = hermite_spline->Get_Point (index + 1);
+
+Get the in and out tangents for these points
+Vector3 tangent_in;
+Vector3 tangent_out;
+Vector3 next_tangent_in;
+Vector3 next_tangent_out;
+hermite_spline->Get_Tangents (index, &tangent_in, &tangent_out);
+hermite_spline->Get_Tangents (index + 1, &next_tangent_in, &next_tangent_out);
+
+Convert the tangents to bezier curve control points
+float one_third = 1.0F / 3.0F;
+Vector3 ctrl_pt1 = point + (tangent_out * one_third);
+Vector3 ctrl_pt2 = next_point - (next_tangent_in * one_third);
+
+Clip the control points to the pathfind sectors and portals
+Clip_Control_Point (point, &ctrl_pt1, sector_list, portal_list);
+Clip_Control_Point (next_point, &ctrl_pt2, sector_list, portal_list);
+
+Convert the control points back into tangents
+tangent_out = (ctrl_pt1 - point) * 3.0F;
+next_tangent_in = (next_point - ctrl_pt2) * 3.0F;
+
+Pass the tangents back to the hermite spline
+hermite_spline->Set_Tangents (index, tangent_in, tangent_out);
+hermite_spline->Set_Tangents (index + 1, next_tangent_in, next_tangent_out);
+}
+
+The important part is that you use the tangents of the Hermite spline to find the control points of the Bezier curve. The conversion is very simple, take the Hermite spline’s control point, and add/subtract the out/in tangent, but scale it by 1/3rd. Then once you’ve clipped the Bezier curve’s control points you can recalculate the tangents and plug them back into the Hermite spline (or you could keep the Bezier curve if you like).
+
+
+Question) About the a*, I never exactly know where to take the point inside a portal to make the calculations. My last iteration is to take the center of the portal and make calculate the pathfinding that way and at the end, I replace the points in the portals to give a smoother path. But I'm not sure this is the right thing to do. In others iteration, I've tried to take the nearest point to the previous point, which lead to some weird path.
+
+Answer) I seem to remember this was a problem for me as well. I think portal center is not the best way to go however, as for large portals it will give very poor results. I *think* what I did was two fold:
+a) For the actual A* pathfind, I would intersect the line from the previous point to the destination with the portal. This isn’t the same as the closest point to the previous, but it isn’t 100% accurate either.
+b) After A* was complete and I had the final portal list I would go through and ‘relax’ the points a bit (just a simple smoothing algorithm, unfortunately I don’t really remember the details). Then after that I splined the path.

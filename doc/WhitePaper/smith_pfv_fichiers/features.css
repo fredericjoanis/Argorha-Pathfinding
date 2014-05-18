@@ -1,0 +1,150 @@
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	background: #FFFFCC;
+	font-size: 11px;
+}
+p {
+	font-size: 10pt;
+}
+.next {
+	font-weight: bold;
+	text-align: right;
+}
+.image {
+	margin: 5px;
+	border: 1px solid #000000;
+	align: center;
+}	
+div.caption {
+  float: right;
+  width: 260px;
+}
+div.caption p {
+  text-align: center;
+	font-size: 8pt;
+	font-weight: bold;
+  text-indent: 0;
+}
+img.scaled {
+  width: 100%;
+}
+.code{
+	background-color: #ffffff; /*background color of content*/
+	color: #000; /*text color of content*/
+	border: 1px solid #000;
+	margin: 5px;
+}
+.left{
+	width: auto;
+	background-color: #ccc999; /*background color of content*/
+	color: #000; /*text color of content*/
+	font-size: 10px;
+	font-weight: bold;
+	border: 1px solid #000;
+	margin: 5px;
+	float: left;
+}	
+.center{
+	align: center;
+	background-color: #ccc999; /*background color of content*/
+	color: #000; /*text color of content*/
+	font-size: 8pt;
+	font-weight: bold;
+	border: 1px solid #000;
+	margin: 5px;
+}
+.right{
+	width: auto;
+	background-color: #ccc999; /*background color of content*/
+	color: #000; /*text color of content*/
+	font-size: 10px;
+	font-weight: bold;
+	border: 1px solid #000;
+	margin: 5px;
+	float: right;
+}
+
+.header {
+	font-size: 16px;
+	font-weight: bold;
+}
+.title {
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+}
+.contents {
+	font-size: 10px;
+	font-weight: bold;
+}
+.byline {
+	color: #880000;
+	font-weight: bold;
+}
+.offsetright {
+	margin-left: 5px;
+}
+.offsetrightmore {
+	margin-left: 10px;
+}
+.contentstitle {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: left;
+	font-style: italic;
+}
+h1 {
+	font-size: 16px;
+	font-weight: bold;
+	text-align: left;
+}
+h2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+}
+h3 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+.subhead {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+}
+li {
+	font-size: 10pt;
+}
+blockquote {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: normal;
+}
+code {
+	font-family: "Courier New", Courier, mono;
+	font-size: x-small;
+}
+.img-shadow {
+  background: url(../shadowAlpha.png) no-repeat bottom right !important;
+  background: url(../shadow.gif) no-repeat bottom right;
+  margin: 10px 0 0 10px !important;
+  margin: 10px 0 0 5px;
+  }
+
+.img-shadow img {
+  display: block;
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #a9a9a9;
+  margin: -6px 6px 6px -6px;
+  padding: 4px;
+  }
+.noline {
+  text-decoration: none;
+  color: #000000;
+  }
+  
+  a {color: #880000; }
+  span.right a.noline {color: #000;}

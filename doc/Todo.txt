@@ -1,0 +1,27 @@
+To hit 1.0
+¯¯¯¯¯¯¯¯¯¯
+- Systems (Ladders, elevators)
+- Race, cars, jumping
+- Enhance A* and organic path.  See SmithIdeas.txt
+- Licensing 
+- AABB and Vector3 are Ogre classes, so I can't do a dual license for now
+- Moving zones and intersecting zones.
+- Test floodfill point ( Or delete )
+- Ogre demo
+- Linux makefile and make it work on Mac
+- Update DOxygen doc and put it on the SVN
+
+Demos improvements
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+- Save and load.
+- Extended feature for path (left mouse sets new, right adds an point to the existing one) 
+- Optimisation
+- Maybe do 2 demos for each engine, one optimize and complete, and one for the basics.
+
+To try
+¯¯¯¯¯¯
+- GPU Pathfinding (OpenCL?)
+
+Nice to have
+¯¯¯¯¯¯¯¯¯¯¯¯
+-Make GOOF working back
